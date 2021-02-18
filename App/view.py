@@ -37,7 +37,12 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
-    print("2- ")
+    print("2- Consultar X videos con más views por categoría para un país")
+    print("3- Consultar el video que más días fue trending para un país")
+    print("4- Consultar el video que más días fue trending para una categoría")
+    print("5- Consultar X videos con más likes en un país con un tag específico")
+    print("0- Salir")
+
 
 catalog = None
 
@@ -51,7 +56,17 @@ while True:
         print("Cargando información de los archivos ....")
 
     elif int(inputs[0]) == 2:
-        pass
+        videos = int(input("Inserte el número de videos: "))
+        pais = str(input("Inserte un país: "))
+        categ = str(input("Inserte una categoría: "))
+
+    elif int(inputs[0]) == 3:
+        pais = str(input("Inserte una categoría: "))
+        
+    elif int(inputs[0]) == 4:
+        videos = int(input("Inserte el número de videos: "))
+        pais = str(input("Inserte un país: "))
+        tag = str(input("Inserte un tag específico: "))
 
     else:
         sys.exit(0)
