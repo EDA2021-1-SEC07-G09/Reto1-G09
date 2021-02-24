@@ -38,35 +38,17 @@ los mismos.
 # Construccion de modelos
 
 
-def newCatalog():
-    catalog = {"trending_date": None,
-               "title": None,
-               "channel_title": None,
-               "publish_time": None,
-               "views": None,
-               "likes": None,
-               "dislikes": None,
-               "country": None,
-               "Días": None,
-               "category_id": None,
-               "tags": None}
-
-    catalog["trending_date"] = lt.newList()
-    catalog["title"] = lt.newList()
-    catalog["channel_title"] = lt.newList()
-    catalog["publish_time"] = lt.newList()
-    catalog["views"] = lt.newList()
-    catalog["likes"] = lt.newList()
-    catalog["dislikes"] = lt.newList()
-    catalog["country"] = lt.newList()
-    catalog["Días"] = lt.newList()
-    catalog["category_id"] = lt.newList()
-    catalog["tags"] = lt.newList()
+def newCatalog(lista):
+    catalog = lt.newList()
 
     return catalog
 
-
 # Funciones para agregar informacion al catalogo
+def loadData(catalog,video):
+        lt.addLast(catalog, video)
+
+def loadCategory_id(category, category_id):
+        lt.addLast(category, category_id)
 
 # Funciones para creacion de datos
 
