@@ -39,7 +39,7 @@ los mismos.
 
 
 def newCatalog(lista):
-    catalog = lt.newList()
+    catalog = lt.newList(lista)
 
     return catalog
 

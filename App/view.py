@@ -43,9 +43,16 @@ def printMenu():
     print("5- Consultar X videos con más likes en un país con un tag específico")
     print("0- Salir")
 
+def initCatalog():
+    return controller.initCatalog()
+    
 
-catalog = None
+def loadData(catalog):
+    controller.loadData(catalog)
 
+
+def loadCategory_id(category):
+    controller.loadCategory_id(category)
 """
 Menu principal
 """
@@ -54,11 +61,22 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
+        catalog = initCatalog()
+        loadData(catalog)
+        category = initCatalog()
+        loadCategory_id(category)
+        video = lt.firstElement(catalog)
+        print(video['title'],video['channel_title'],video['trending_date'],video['country'],
+        video['views'],video['likes'],video['dislikes'])
+        print('Videos cargados: ' + str(lt.size(catalog)))
+        print('Catalagos cargados: ' + str(lt.size(category)))
+        
 
     elif int(inputs[0]) == 2:
         videos = int(input("Inserte el número de videos: "))
         pais = str(input("Inserte un país: "))
         categ = str(input("Inserte una categoría: "))
+
 
     elif int(inputs[0]) == 3:
         pais = str(input("Inserte una categoría: "))
