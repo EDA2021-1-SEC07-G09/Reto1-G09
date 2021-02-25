@@ -28,6 +28,11 @@
 import config as cf
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.Algorithms.Sorting import selectionsort as sel
+from DISClib.Algorithms.Sorting import insertionsort as ins
+from DISClib.Algorithms.Sorting import quicksort as qui 
+from DISClib.Algorithms.Sorting import mergesort as mer
+import time
 assert cf
 
 """
@@ -38,22 +43,73 @@ los mismos.
 # Construccion de modelos
 
 
-def newCatalog(lista):
-    catalog = lt.newList(lista)
+def newCatalog(typelist):
+    catalog = lt.newList(typelist)
 
     return catalog
 
+def newcategory():
+        category = {}
+        return category
 # Funciones para agregar informacion al catalogo
 def loadData(catalog,video):
         lt.addLast(catalog, video)
 
 def loadCategory_id(category, category_id):
-        lt.addLast(category, category_id)
+        category[category_id['id']] = category_id['name']
 
 # Funciones para creacion de datos
 
 # Funciones de consulta
 
 # Funciones utilizadas para comparar elementos dentro de una lista
+def cmpVideosByViews(video1, video2):
+    return (float(video1['views']) > float(video2['views']))
 
+
+def selectionSortVideos(catalog, size):
+        sub_list = lt.subList(catalog, 1, size)
+        sub_list = sub_list.copy()
+        start_time = time.process_time()
+        selectionSortList = sel.sort(sub_list, cmpVideosByViews)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time)*1000
+        return (elapsed_time_mseg, selectionSortList)
+
+
+def shellSortVideos(catalog, size):
+        sub_list = lt.subList(catalog, 1, size)
+        sub_list = sub_list.copy()
+        start_time = time.process_time()
+        shellSortList = sa.sort(sub_list, cmpVideosByViews)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time)*1000
+        return (elapsed_time_mseg, shellSortList)
+
+def insertionSortVideos(catalog, size):
+        sub_list = lt.subList(catalog, 1, size)
+        sub_list = sub_list.copy()
+        start_time = time.process_time()
+        insertionSortList = ins.sort(sub_list, cmpVideosByViews)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time)*1000
+        return (elapsed_time_mseg, insertionSortList)
+        
+def quickSortVideos(catalog, size):
+        sub_list = lt-subList(catalog, 1, size)
+        sub_list = sub_list.copy()
+        start_time = time.process_time()
+        quickSortList = qui.sort(sub_list, cmpVideosByViews)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time)*1000
+        return (elapsed_time_mseg, quickSortList)
+
+def mergeSortVideos(catalog, size):
+        sub_list = lt-subList(catalog, 1, size)
+        sub_list = sub_list.copy()
+        start_time = time.process_time()
+        mergeSortList = mer.sort(sub_list, cmpVideosByViews)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time)*1000
+        return (elapsed_time_mseg, mergeSortList)
 # Funciones de ordenamiento
