@@ -128,7 +128,7 @@ while True:
                                             str(result[0]))
                 printResults(result[1])
             elif int(typesort[0]) == 4:
-                result = controller.mrgeSortVideos(catalog, int(size))
+                result = controller.mergeSortVideos(catalog, int(size))
                 print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
                 printResults(result[1])
