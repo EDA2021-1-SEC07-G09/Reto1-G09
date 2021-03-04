@@ -96,7 +96,7 @@ def insertionSortVideos(catalog, size):
         return (elapsed_time_mseg, insertionSortList)
         
 def quickSortVideos(catalog, size):
-        sub_list = lt-subList(catalog, 1, size)
+        sub_list = lt.subList(catalog, 1, size)
         sub_list = sub_list.copy()
         start_time = time.process_time()
         quickSortList = qui.sort(sub_list, cmpVideosByViews)
@@ -105,7 +105,7 @@ def quickSortVideos(catalog, size):
         return (elapsed_time_mseg, quickSortList)
 
 def mergeSortVideos(catalog, size):
-        sub_list = lt-subList(catalog, 1, size)
+        sub_list = lt.subList(catalog, 1, size)
         sub_list = sub_list.copy()
         start_time = time.process_time()
         mergeSortList = mer.sort(sub_list, cmpVideosByViews)
