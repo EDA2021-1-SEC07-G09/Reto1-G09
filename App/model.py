@@ -62,6 +62,45 @@ def loadCategory_id(category, category_id):
 
 # Funciones de consulta
 
+def paisCategoria(catalog, category, country, n):
+        cumple = []
+        part = {trending_date: ,
+                title: ,
+                channel_title: ,
+                publish_time: ,
+                views: ,
+                likes: ,
+                dislikes: ,
+                }
+        i = 0
+        listaOrd = mergeSortVideos(catalog)
+        while i <= n-1:
+                seccion = listaOrd[i]
+                cumplimiento1 = seccion["category"]==category
+                cumplimiento2 = seccion["country"]==country
+                if (cumplimiento1 and cumplimiento2):
+                        part["trending_date"]=listaOrd["trending_date"]
+                        part["titie"]=clistaOrd["title"]
+                        part["channel_title"]=listaOrd["channel_title"]
+                        part["publish_time"]=listaOrd["publish_time"]
+                        part["views"]=listaOrd["views"]
+                        part["likes"]=listaOrd["likes"]
+                        part["dislikes"]=listaOrd["dislikes"]
+                        cumple.append(part)
+                i += 1
+        if len(cumple) != 0
+                return cumple
+        else:
+            return None
+
+                
+                        
+
+                
+                
+
+
+
 # Funciones utilizadas para comparar elementos dentro de una lista
 def cmpVideosByViews(video1, video2):
     return (float(video1['views']) > float(video2['views']))
