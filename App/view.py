@@ -92,7 +92,6 @@ def printResults(ord_videos, n:int, inputs:int):
             i += 1
     if inputs == 6 and n <= lt.size(ord_videos):
         i = 1
-        print(str(lt.size(ord_videos)))
         while i <= n:
             video = lt.getElement(ord_videos, i)
             print("Titulo : "+ video['title'] + ' Titulo del Canal: '+ video['channel_title'] + ' Pais: '+ video['country'] +
