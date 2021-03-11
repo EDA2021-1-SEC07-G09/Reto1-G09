@@ -38,9 +38,10 @@ def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
     print("2- Consultar X videos con más views")
-    print("3- Consultar el video que más días fue trending para un país")
-    print("4- Consultar el video que más días fue trending para una categoría")
-    print("5- Consultar X videos con más likes en un país con un tag específico")
+    print("3: Consultar los X videos mas vistos en un pais para una categoría")
+    print("4- Consultar el video que más días fue trending para un país")
+    print("5- Consultar el video que más días fue trending para una categoría")
+    print("6- Consultar X videos con más likes en un país con un tag específico")
     print("0- Salir")
 
 def initCatalog(typelist):
@@ -56,25 +57,41 @@ def loadData(catalog):
 def loadCategory_id(category):
     controller.loadCategory_id(category)
 
-def printResults(ord_videos, sample=10):
-    size = lt.size(ord_videos)
+def printResults(ord_videos, n:int, inputs:int):
 
-    if size > sample:
-        print("Los primeros ", sample, " libros ordenados son: ")
+    if inputs == 2:
+        print("Los primeros ", n, " videos ordenados son: ")
         i = 1
-        while i <= sample:
+        while i <= n:
             video = lt.getElement(ord_videos, i)
-            print("Titulo :"+ video['title'] + ' Titulo del Canal: '+ video['channel_title'] +
+            print("Titulo : "+ video['title'] + ' Titulo del Canal: '+ video['channel_title'] +
             ' Trending_date: ' + video['trending_date']+ ' Pais: '+ video['country'] +
-            ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'])
+            ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes']+ ' Fecha de publicación: '+video['publish_time'])
+            i += 1
+    elif inputs == 3:
+        print("Los primeros ", n, " videos ordenados por views son: ")
+        i = 1
+        while i <= n:
+            video = lt.getElement(ord_videos, i)
+            print(' Trending_date: ' + video['trending_date']+ " Titulo : "+ video['title']+ 
+            ' Titulo del Canal: '+ video['channel_title'] + ' Fecha de publicación: '+video['publish_time']+ 'views: '+ video['views'] + ' Likes: ' +
+             video['likes'] + ' Dislikes: ' + video['dislikes'])
+            i += 1
+    elif inputs == 4 or inputs == 5:
+        print("Los primeros ", n, " videos ordenados por views son: ")
+        i = 1
+        while i <= n:
+            video = lt.getElement(ord_videos, i)
+            print(" Titulo : "+ video['title']+ ' Titulo del Canal: '+ video['channel_title'] + ' Pais: '+video['country']+ 'Dias de tendencia: ', video['trending_days'])
             i += 1
 """
 Menu principal
 """
 while True:
     printMenu()
-    inputs = input('Seleccione una opción para continuar\n')
-    if int(inputs[0]) == 1:
+    opcion = input('Seleccione una opción para continuar\n')
+    inputs = int(opcion[0])
+    if inputs == 1:
         print('Tipo de lista que desea crear')
         print('1- Array list')
         print('2- Single linked list')
@@ -88,18 +105,19 @@ while True:
             catalog = initCatalog('SINGLE_LIKED')
 
         loadData(catalog)
-        category = initcategory()
-        loadCategory_id(category)
+        category_ctg = initcategory()
+        loadCategory_id(category_ctg)
         video = lt.firstElement(catalog)
-        print(type(catalog))
-        print("Titulo :"+ video['title'] + ' Titulo del Canal: '+ video['channel_title'] +
+        print(category_ctg)
+        print(video)
+        '''print("Titulo :"+ video['title'] + ' Titulo del Canal: '+ video['channel_title'] +
             ' Trending_date: ' + video['trending_date']+ ' Pais: '+ video['country'] +
-            ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'])
+            ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'])'''
         print('Videos cargados: ' + str(lt.size(catalog)))
-        print('Catalagos cargados: ' + str(len(category)))
+        print('Catalagos cargados: ' + str(len(category_ctg)))
         
 
-    elif int(inputs[0]) == 2:
+    elif inputs== 2:
         size = int(input("Inserte el número de videos: "))
         print('Metodo de ordenamiento que desea utilizar')
         print('1- shellsort')
@@ -114,43 +132,54 @@ while True:
                 result = controller.shellSortVideos(catalog, (size))
                 print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
-                printResults(result[1])
+                printResults(result[1],10,inputs)
                 
             elif int(typesort[0]) == 2:
-                result = controller.selectionSortVideos(catalog, (size))
+                result = controller.selectionSortVideos(catalog, size)
                 print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
-                printResults(result[1])
+                printResults(result[1],10,inputs)
             
             elif int(typesort[0]) == 3:
-                result = controller.insertionSortVideos(catalog, int(size))
+                result = controller.insertionSortVideos(catalog, size)
                 print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
-                printResults(result[1])
+                printResults(result[1],10,inputs)
             elif int(typesort[0]) == 4:
-                result = controller.mergeSortVideos(catalog, int(size))
+                result = controller.mergeSortVideos(catalog, size)
                 print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
-                printResults(result[1])
+                printResults(result[1],10,inputs)
             elif int(typesort[0]) == 5:
-                result = controller.quickSortVideos(catalog, int(size))
+                result = controller.quickSortVideos(catalog, size)
                 print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
-                printResults(result[1])
-        #pais = str(input("Inserte un país: "))
-        #categ = str(input("Inserte una categoría: "))
+                printResults(result[1],10,inputs)
 
+    elif inputs == 3:
+        pais = str(input("Inserte un país: "))
+        categ = str( input("Inserte una categoría: "))
+        print(category_ctg[categ])
+        size = int(input("Inserte el número de videos: "))
+        result = controller.paisCategoria(catalog, category_ctg, categ, pais)
+        printResults(result[1],size,inputs)
 
+    
+    elif inputs == 4:
+        pais = str(input("Inserte una pais: "))
+        result = controller.trendingpais(catalog,pais)
+        printResults(result[1],1,inputs)
 
+    elif inputs == 5:
+        categ = str(input("Inserte una categoria: "))
+        result = controller.trendingcategory(catalog, category_ctg, categ)
+        printResults(result[1],1,inputs)
 
-
-    elif int(inputs[0]) == 3:
-        pais = str(input("Inserte una categoría: "))
-        
-    elif int(inputs[0]) == 4:
+    elif inputs == 6:
         videos = int(input("Inserte el número de videos: "))
         pais = str(input("Inserte un país: "))
         tag = str(input("Inserte un tag específico: "))
+        
 
     else:
         sys.exit(0)

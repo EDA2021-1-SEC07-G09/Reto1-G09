@@ -36,8 +36,8 @@ def initCatalog(typelist):
     return catalog
 
 def initcategory():
-    catalog = model.newcategory()
-    return catalog
+    category_ctg = model.newcategory()
+    return category_ctg
 # Funciones para la carga de datos
 def loadData(catalog):
     """
@@ -54,29 +54,29 @@ def loadvideo(catalog):
         model.loadData(catalog, video)
 
 
-def loadCategory_id(category):
+def loadCategory_id(category_ctg):
     categoryfile = cf.data_dir + 'videos/category-id.csv'
     input_file = csv.DictReader(open(categoryfile, encoding="utf-8"),  delimiter='\t')
     print
     for category_id in input_file:
-        model.loadCategory_id(category, category_id)
+        model.loadCategory_id(category_ctg, category_id)
 
 # Funciones de ordenamiento
 def selectionSortVideos(catalog, size):
 
-    return model.selectionSortVideos(catalog, size)
+    return model.selectionSortVideos(catalog, size, 'views')
 
 def shellSortVideos(catalog, size):
 
-    return model.shellSortVideos(catalog, size)
+    return model.shellSortVideos(catalog, size, 'views')
 
 def insertionSortVideos(catalog, size):
 
-    return model.insertionSortVideos(catalog, size)
+    return model.insertionSortVideos(catalog, size, 'views')
 
 def mergeSortVideos(catalog, size):
 
-    return model.mergeSortVideos(catalog, size)
+    return model.mergeSortVideos(catalog, size, 'views')
 
 def quickSortVideos(catalog, size):
 
@@ -85,6 +85,15 @@ def quickSortVideos(catalog, size):
 
 
 # Funciones de consulta sobre el catálogo
+def paisCategoria(catalog, category_ctg, category, country):
+    return model.paisCategoria(catalog, category_ctg, category, country)
+
+def trendingpais(catalog, country):
+    return model.trendingpais(catalog, country)
+
+def trendingcategory(catalog, category_ctg, category):
+    return model.trendingcategory(catalog, category_ctg, category)
+
 '''def country_categoryVideos(catalog, category, pais, category_id)
     for video in catalog:
         if video['country'] == pais:'''
