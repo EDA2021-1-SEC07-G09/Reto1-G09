@@ -123,11 +123,9 @@ while True:
         category_ctg = initcategory()
         loadCategory_id(category_ctg)
         video = lt.firstElement(catalog)
-        print(category_ctg)
-        print(video)
         print("Titulo :"+ video['title'] + ' Titulo del Canal: '+ video['channel_title'] +
             ' Trending_date: ' + video['trending_date']+ ' Pais: '+ video['country'] +
-            ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'])
+            ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'] + video['tags'])
         print('Videos cargados: ' + str(lt.size(catalog)))
         print('Catalagos cargados: ' + str(len(category_ctg)))
         

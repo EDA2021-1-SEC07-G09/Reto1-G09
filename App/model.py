@@ -113,12 +113,12 @@ def likespaistag(catalog, country, tag):
         for video in catalog["elements"]:
                 if video['country'] == country:
                         videotags = video["tags"]
-                        videotags = videotags.replace(' ','')
+                        videotags = videotags.replace('"','')
                         videotags = videotags.split('|')
                         ejecutar = True
                         i = 0
                         while ejecutar == True and i < len(videotags):
-                                if tag == videotags[i]:
+                                if tag in videotags[i]:
                                         ejecutar = False
                                         if video['title'] in videos_tags:
                                                 likes= int(videos_tags[video['title']][1])
