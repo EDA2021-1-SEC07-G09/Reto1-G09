@@ -124,7 +124,7 @@ while True:
         video = lt.firstElement(catalog)
         print("Titulo :"+ video['title'] + ' Titulo del Canal: '+ video['channel_title'] +
             ' Trending_date: ' + video['trending_date']+ ' Pais: '+ video['country'] +
-            ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'] + video['tags'])
+            ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'])
         print('Videos cargados: ' + str(lt.size(catalog)))
         print('Catalagos cargados: ' + str(len(category_ctg)))
         
