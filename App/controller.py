@@ -80,7 +80,7 @@ def mergeSortVideos(catalog, size):
 
 def quickSortVideos(catalog, size):
 
-    return model.quickSortVideos(catalog, size)
+    return model.quickSortVideos(catalog, size, 'views')
 
 
 
@@ -94,7 +94,6 @@ def trendingpais(catalog, country):
 def trendingcategory(catalog, category_ctg, category):
     return model.trendingcategory(catalog, category_ctg, category)
 
-'''def country_categoryVideos(catalog, category, pais, category_id)
-    for video in catalog:
-        if video['country'] == pais:'''
+def likespaistag(catalog, country, tag):
+    return model.likespaistag(catalog, country, tag)
 

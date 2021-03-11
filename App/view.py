@@ -59,7 +59,7 @@ def loadCategory_id(category):
 
 def printResults(ord_videos, n:int, inputs:int):
 
-    if inputs == 2:
+    if inputs == 2 and n <= lt.size(ord_videos):
         print("Los primeros ", n, " videos ordenados son: ")
         i = 1
         while i <= n:
@@ -68,8 +68,7 @@ def printResults(ord_videos, n:int, inputs:int):
             ' Trending_date: ' + video['trending_date']+ ' Pais: '+ video['country'] +
             ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes']+ ' Fecha de publicación: '+video['publish_time'])
             i += 1
-    elif inputs == 3:
-        print("Los primeros ", n, " videos ordenados por views son: ")
+    elif inputs == 3 and n <= lt.size(ord_videos):
         i = 1
         while i <= n:
             video = lt.getElement(ord_videos, i)
@@ -77,12 +76,28 @@ def printResults(ord_videos, n:int, inputs:int):
             ' Titulo del Canal: '+ video['channel_title'] + ' Fecha de publicación: '+video['publish_time']+ 'views: '+ video['views'] + ' Likes: ' +
              video['likes'] + ' Dislikes: ' + video['dislikes'])
             i += 1
-    elif inputs == 4 or inputs == 5:
-        print("Los primeros ", n, " videos ordenados por views son: ")
+    elif inputs == 4 and n <= lt.size(ord_videos):
         i = 1
         while i <= n:
             video = lt.getElement(ord_videos, i)
-            print(" Titulo : "+ video['title']+ ' Titulo del Canal: '+ video['channel_title'] + ' Pais: '+video['country']+ 'Dias de tendencia: ', video['trending_days'])
+            print(" Titulo : "+ video['title']+ ' Titulo del Canal: '+ video['channel_title'] + ' Pais: '+
+            video['country']+ ' Dias de tendencia: ', video['trending_days'])
+            i += 1
+    elif inputs == 5 and n <= lt.size(ord_videos):
+        i = 1
+        while i <= n:
+            video = lt.getElement(ord_videos, i)
+            print(" Titulo : "+ video['title']+ ' Titulo del Canal: '+ video['channel_title'] + ' Categoria_id: '+
+            video['category_id']+ ' Dias de tendencia: ', video['trending_days'])
+            i += 1
+    if inputs == 6 and n <= lt.size(ord_videos):
+        i = 1
+        print(str(lt.size(ord_videos)))
+        while i <= n:
+            video = lt.getElement(ord_videos, i)
+            print("Titulo : "+ video['title'] + ' Titulo del Canal: '+ video['channel_title'] + ' Pais: '+ video['country'] +
+            ' Fecha de publicación: '+video['publish_time'] + ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + 
+            video['dislikes'] + ' Tags: ' + video['tags'])
             i += 1
 """
 Menu principal
@@ -110,9 +125,9 @@ while True:
         video = lt.firstElement(catalog)
         print(category_ctg)
         print(video)
-        '''print("Titulo :"+ video['title'] + ' Titulo del Canal: '+ video['channel_title'] +
+        print("Titulo :"+ video['title'] + ' Titulo del Canal: '+ video['channel_title'] +
             ' Trending_date: ' + video['trending_date']+ ' Pais: '+ video['country'] +
-            ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'])'''
+            ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'])
         print('Videos cargados: ' + str(lt.size(catalog)))
         print('Catalagos cargados: ' + str(len(category_ctg)))
         
@@ -159,28 +174,32 @@ while True:
     elif inputs == 3:
         pais = str(input("Inserte un país: "))
         categ = str( input("Inserte una categoría: "))
-        print(category_ctg[categ])
         size = int(input("Inserte el número de videos: "))
         result = controller.paisCategoria(catalog, category_ctg, categ, pais)
+        print("Los primeros ", size, " videos ordenados por views de ",pais, "que pertenecen a la categoría ",
+        categ, " son: ")
         printResults(result[1],size,inputs)
 
     
     elif inputs == 4:
         pais = str(input("Inserte una pais: "))
         result = controller.trendingpais(catalog,pais)
+        print("El video que fue trending mas dias de ", pais, " es: ")
         printResults(result[1],1,inputs)
 
     elif inputs == 5:
         categ = str(input("Inserte una categoria: "))
         result = controller.trendingcategory(catalog, category_ctg, categ)
+        print("El video que fue trending mas dias de la categoría ", categ, " es: ")
         printResults(result[1],1,inputs)
 
     elif inputs == 6:
-        videos = int(input("Inserte el número de videos: "))
+        size = int(input("Inserte el número de videos: "))
         pais = str(input("Inserte un país: "))
         tag = str(input("Inserte un tag específico: "))
-        
-
+        result = controller.likespaistag(catalog, pais, tag)
+        print("Los primeros ", size, " videos diferentes de ", pais, " con el tag ", tag, " con mas likes son: ")
+        printResults(result[1],size,inputs)
     else:
         sys.exit(0)
 sys.exit(0)
