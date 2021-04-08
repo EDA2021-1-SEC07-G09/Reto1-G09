@@ -19,7 +19,8 @@
  * You should have received a copy of the GNU General Public License
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
-
+import time
+import tracemalloc
 import config as cf
 import model
 import csv
@@ -31,8 +32,8 @@ El controlador se encarga de mediar entre la vista y el modelo.
 
 # Inicialización del Catálogo de libros
 
-def initCatalog(typelist):
-    catalog = model.newCatalog(typelist)
+def initCatalog():
+    catalog = model.newCatalog()
     return catalog
 
 def initcategory():
@@ -44,6 +45,7 @@ def loadData(catalog):
     Carga los datos de los archivos y cargar los datos en la
     estructura de datos
     """
+    
     loadvideo(catalog)
 
 
@@ -52,6 +54,8 @@ def loadvideo(catalog):
     input_file = csv.DictReader(open(videofile, encoding='utf-8'))
     for video in input_file:
         model.loadData(catalog, video)
+        model.addVideoCatergory(catalog, video)
+        model.addVideoCountry(catalog, video)
 
 
 def loadCategory_id(category_ctg):

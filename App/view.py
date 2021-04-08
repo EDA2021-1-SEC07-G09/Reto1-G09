@@ -44,8 +44,8 @@ def printMenu():
     print("6- Consultar X videos con más likes en un país con un tag específico")
     print("0- Salir")
 
-def initCatalog(typelist):
-    return controller.initCatalog(typelist)
+def initCatalog():
+    return controller.initCatalog()
     
 def initcategory():
     return controller.initcategory()
@@ -106,26 +106,13 @@ while True:
     opcion = input('Seleccione una opción para continuar\n')
     inputs = int(opcion[0])
     if inputs == 1:
-        print('Tipo de lista que desea crear')
-        print('1- Array list')
-        print('2- Single linked list')
-        typelist = input('Seleccione el tipo de lista para continuar\n')
         print("Cargando información de los archivos ....")
-        catalog = None
-        if int(typelist[0]) == 1:
-            catalog = initCatalog('ARRAY_LIST')
-            
-        elif int(typelist[0]) == 2:
-            catalog = initCatalog('SINGLE_LIKED')
+        catalog = initCatalog()
 
         loadData(catalog)
         category_ctg = initcategory()
         loadCategory_id(category_ctg)
-        video = lt.firstElement(catalog)
-        print("Titulo :"+ video['title'] + ' Titulo del Canal: '+ video['channel_title'] +
-            ' Trending_date: ' + video['trending_date']+ ' Pais: '+ video['country'] +
-            ' views: '+ video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'])
-        print('Videos cargados: ' + str(lt.size(catalog)))
+        print('Videos cargados: ' + str(lt.size(catalog['video'])))
         print('Catalagos cargados: ' + str(len(category_ctg)))
         
 
